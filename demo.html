@@ -1,0 +1,42 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <title>Title</title>
+    <script src="../jq.js"></script>
+    <script src="FreeSearch.js"></script>
+    <link rel="stylesheet" href="FreeSearch.css" />
+    <style>
+        #usersBox{
+            width:200px;
+            min-height: 30px;
+            border:1px solid #aeaeae;
+        }
+
+    </style>
+</head>
+<body>
+<div id="usersBox" class="fix"></div>
+<input id="submit" type="button" value="提交">
+</body>
+<script>
+    var api_url = "http://123.57.152.75:8051/ifsys/getAvlUserList.do";
+    var invokers = [23,24,25];
+    $.ajax({
+        url:api_url,
+        type:"post",
+        success:function(data){
+            // 1.获取格式化对象
+            var searchBox = $("#usersBox").searchBox(data.userInfos);
+            searchBox.setInitItems(invokers)
+            // 2.获取选择结果
+            $("#submit").click(function(){
+                var result = searchBox.getAllSelections();
+                console.log(result);
+            });
+        },
+        data:JSON.stringify({}),
+        contentType:"application/json"
+    })
+</script>
+</html>
