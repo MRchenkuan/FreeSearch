@@ -3,7 +3,7 @@
 <head>
     <meta charset="UTF-8">
     <title>Title</title>
-    <script src="../jq.js"></script>
+    <script src="./jq.js"></script>
     <script src="FreeSearch.js"></script>
     <link rel="stylesheet" href="FreeSearch.css" />
     <style>
@@ -28,7 +28,7 @@
         success:function(data){
             // 1.获取格式化对象
             var searchBox = $("#usersBox").searchBox(data.userInfos);
-            searchBox.setInitItems(invokers)
+            searchBox.setInitItems(invokers);
             // 2.获取选择结果
             $("#submit").click(function(){
                 var result = searchBox.getAllSelections();
